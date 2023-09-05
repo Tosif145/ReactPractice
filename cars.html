@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>React App</title>
+        <!-- Include all the CDNs here -->
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <link rel="stylesheet" href="cars.css">
+    </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function Student(){
+            const students = [{
+                name : "std1",
+                age : 16,
+                marks : 76
+            },
+            {
+                name : "std2",
+                age : 18,
+                marks : 68
+            },
+            {
+                name : "std3",
+                age : 17,
+                marks : 90
+            }
+         ];
+           return (
+            <>
+            <h1>Student detlais</h1>
+            <table>
+                <thead>
+                    <tr>
+                      <th>Student Name</th>
+                      <th>Age</th>
+                      <th>Marks</th>
+                    </tr>
+                </thead>
+                
+               <tbody>
+                {// map function creates a new array for every element 
+                    students.map((obj,idx) =>
+                    <tr key={idx}>
+                       <td>{obj.name}</td>
+                       <td>{obj.age}</td>
+                       <td>{obj.marks}</td>
+                    </tr>
+                 )}
+              </tbody> 
+            </table></>
+           )
+            
+        }
+      const Car = () => {
+        const cars = [{
+            name: "BMW",
+            average: 10,
+            img: "https://cdn-icons-png.flaticon.com/128/741/741407.png"
+        },
+        {
+            name: "Audi",
+            average: 12,
+            img: "https://cdn-icons-png.flaticon.com/128/741/741407.png" 
+        },
+        {
+            name: "Nexa",
+            average: 18,
+            img: "https://cdn-icons-png.flaticon.com/128/741/741407.png"
+        }
+       ];
+
+       return(
+         <>
+         <h1>Cars Details</h1>
+         <table>
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Average</th>
+                </tr>
+            </thead>
+            <tbody>
+                { cars.map((car,idx) => 
+                     <tr key = {idx}>
+                        <td><img src={car.img} alt=""/></td>
+                        <td>{car.name}</td>
+                        <td>{car.average}</td>
+                     </tr>
+                    )}
+            </tbody>
+         </table>
+         </>
+       )
+     
+      }
+     // Conditional rendering : rendering component / elements based on the condition
+      function App(){
+        let showCars = true;
+        if(showCars){
+            return <Car/>;
+        }                          
+        return(
+        <>
+         
+          <Student/>
+        </>
+      )}
+
+      const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+      rootElement.render(<App />);
+    </script>
+
+  </body>
+</html>

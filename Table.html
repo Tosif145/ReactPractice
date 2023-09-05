@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>React Component</title>
+        <!-- Include all the CDNs here -->
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    </head>
+    <body>
+      <div id="root"></div>
+    
+
+      <script crossorigin  type="text/babel" >
+
+        function App(){
+            const students = [{
+                name : "std1",
+                age : 16,
+                marks : 76
+            },
+            {
+                name : "std2",
+                age : 18,
+                marks : 68
+            },
+            {
+                name : "std3",
+                age : 17,
+                marks : 90
+            }
+         ];
+           return (
+            <>
+            <h1>Student detlais</h1>
+            <table>
+                <thead>
+                    <tr>
+                      <th>Student Name</th>
+                      <th>Age</th>
+                      <th>Marks</th>
+                    </tr>
+                </thead>
+                
+               <tbody>
+                {// map function creates a new array for every element 
+                    students.map((obj,idx) =>
+                    <tr key={idx}>
+                       <td>{obj.name}</td>
+                       <td>{obj.age}</td>
+                       <td>{obj.marks}</td>
+                    </tr>
+                 )}
+              </tbody> 
+            </table></>
+           )
+            
+        }
+        ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+
+      </script>
+    </body>
+</html>
