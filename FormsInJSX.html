@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <title>React App</title>
+    <style>
+      table, th, td {
+          border:1px solid black;
+       }
+    </style>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const Form = () => 
+      <>
+        <form id="details">
+            <input type="text" id="fName" placeholder="Name"/>
+            <input type="number" id="marks" placeholder="Marks"/>
+            <button onClick = {submitFun}>Submit</button>
+        </form>
+      </>;
+      let list = [];
+      
+      const submitFun =  (ev) => {
+        ev.preventDefault();  
+        
+        var fName = document.getElementById("fName");
+        var Marks = document.getElementById("marks");
+        const info = { };
+        info.name = fName.value;
+        info.marks = Marks.value;
+        list.push(info);
+        fName.value = "";
+        Marks.value = "";
+        rootElement.render(<App />);
+      } ;
+     
+      const Result = () => 
+      <>
+      <div>
+        <table>
+            <thead>
+                <tr>
+                <th>Student's Name</th>
+                <th>Marks</th>
+            </tr>
+            </thead>
+            <tbody>
+                
+                {list.map((obj,idx) => 
+                    
+                    <tr key={idx}> 
+                        <td >{obj.name}</td>
+                        <td >{obj.marks}</td>
+                    </tr>
+                )}
+                
+            </tbody>
+            
+        </table>
+      </div>
+        
+      </>;
+
+      const App = () => (
+        <>
+          <Form />
+          <br/>
+          <Result />
+        </>
+      );
+
+      const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+      rootElement.render(<App />);
+    </script>
+  </body>
+</html>
